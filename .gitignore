@@ -1,0 +1,26 @@
+# Gradle
+.gradle/
+build/
+out/
+bin/
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+
+# Agents & Tools
+.agents/
+
+# Minecraft / Fabric Run
+run/
+*.log
+
+# OS Generated
+.DS_Store
+Thumbs.db
+
+# Packet dumps
+packet_*.txt

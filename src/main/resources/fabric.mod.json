@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "auto-login-plus-plus",
+  "version": "${version}",
+  "name": "Auto Login++",
+  "description": "Auto Login addon for Meteor Client supporting both Chat and DialogUi auth.",
+  "authors": [
+    "pepember"
+  ],
+  "contact": {},
+  "environment": "client",
+  "entrypoints": {
+    "meteor": [
+      "com.autologinplus.addon.AutoLoginAddon"
+    ]
+  },
+  "custom": {
+    "meteor-client:color": "145,61,226",
+    "modmenu": {
+      "parent": {
+        "id": "meteor-client"
+      }
+    }
+  },
+  "depends": {
+    "java": ">=${jdk_version}",
+    "minecraft": "${minecraft_version}",
+    "meteor-client": "*"
+  }
+}
