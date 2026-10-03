@@ -67,13 +67,6 @@ public class AutoLoginPlusPlus extends Module {
         .build()
     );
 
-    private final Setting<Boolean> chatFeedback = sgGeneral.add(new BoolSetting.Builder()
-        .name("chat-feedback")
-        .description("Sends client-side messages for login attempts and auto-recording.")
-        .defaultValue(true)
-        .build()
-    );
-
     private final Setting<Integer> delay = sgGeneral.add(new IntSetting.Builder()
         .name("delay-ticks")
         .description("Delay in ticks before sending chat login command.")
@@ -413,9 +406,6 @@ public class AutoLoginPlusPlus extends Module {
         // this second dialog means the configured password was INCORRECT!
         if (dialogAttemptSent) {
             AutoLoginAddon.LOG.warn("[AutoLogin++] Second ShowDialog received on same connection. Previous auto-login attempt failed (incorrect password). Leaving dialog open for user manual entry.");
-            if (chatFeedback.get()) {
-                warning("Auto-login failed: incorrect password. Please enter password manually.");
-            }
             return; // DO NOT SEND PACKET, DO NOT CANCEL DIALOG
         }
 
@@ -511,10 +501,6 @@ public class AutoLoginPlusPlus extends Module {
             }
         } finally {
             sendingOurPacket = false;
-        }
-
-        if (sent && chatFeedback.get()) {
-            info("Auto-logged in via DialogUi.");
         }
     }
 
@@ -652,10 +638,6 @@ public class AutoLoginPlusPlus extends Module {
         AutoLoginAddon.LOG.info("[AutoLogin++] Auto-recorded credentials: server='{}', nick='{}', cmd='{}'",
             serverKey, nick, savedCommand);
 
-        if (chatFeedback.get()) {
-            info("Auto-recorded credentials for (highlight)%s(default) on (highlight)%s(default).", nick, serverKey);
-        }
-
         if (currentWidget != null && currentTheme != null) {
             mc.execute(() -> {
                 if (currentWidget != null && currentTheme != null) {
@@ -702,9 +684,6 @@ public class AutoLoginPlusPlus extends Module {
         if (passOrCmd != null) {
             String cmd = formatChatCommand(passOrCmd);
             messageQueue.add(cmd);
-            if (chatFeedback.get()) {
-                info("Auto-logged in via Chat.");
-            }
         }
     }
 
